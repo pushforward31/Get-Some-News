@@ -1,0 +1,48 @@
+body{
+	background: url("https://secure.static.tumblr.com/4d3dd0aabf6c52c57afc18879c169ae1/riqitkz/9nhn15y8u/tumblr_static_2012_movies_collage.jpg");
+}
+
+h1{
+	text-align: center;
+	font-weight: bold;
+	font-family: 'Gloria Hallelujah', cursive;
+	color: white;
+	font-size: 90px;
+}
+
+h3{
+	color: lightblue;
+	text-align: center;
+}
+
+.jumbotron{
+	background-color: lightblue;
+}
+#new-stuff{
+	color: lightblue;
+}
+
+#new-info{
+	 display: inline-block;
+        overflow: auto;
+        width: 60%;
+        height: 700px;
+}
+
+#notes {
+        float: right;
+        width: 30%;
+      }
+      textarea, input {
+        display: block;
+        width: 100%;
+        background-color: #FCF5C7;
+      }
+      input {
+        height: 36px;
+        font-size: 24px;
+      }
+      textarea {
+        height: 200px;
+        font-size: 18px;
+      }
