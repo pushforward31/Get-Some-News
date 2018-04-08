@@ -15,6 +15,7 @@ $.ajax({
         for (var i = 0; i < data.length; i++) {
             // Display the apropos information on the page
             $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+            $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "</button>");
         }
     });
 
@@ -104,3 +105,15 @@ $(document).on("click", "#remove-it", function(){
 
 });
 
+$(document).on("click", ".delete-it", function(){
+// DELETE route for deleting posts
+  app.delete("moviesNews/:id", function(req, res) {
+    db.news.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbnews) {
+      res.json(dbnews);
+    });
+  });
+});
