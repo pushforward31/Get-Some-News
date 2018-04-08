@@ -3,6 +3,8 @@ console.log("button works");
 $.ajax({
   method:"GET",
   url: "/scrape"
+}).then(function(data){
+  console.log(data);
 });
 
 
@@ -86,3 +88,19 @@ $(document).on("click", "#savenote", function() {
     $("#titleinput").val("");
     $("#bodyinput").val("");
 });
+
+$(document).on("click", "#remove-it", function(){
+
+   // This function does an API call to delete posts
+  //function deletePost(id) {}
+    $.ajax({
+      method: "DELETE",
+      url: "/moviesNews/" 
+      //+ thisid
+    })
+    .then(function() {
+      $("#new-info").empty();
+    });
+
+});
+

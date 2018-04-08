@@ -94,7 +94,7 @@ app.get("/scrape", function(req, res) {
 
       // Create a new Article using the `result` object built from scraping
       db.news.create(result)
-        .then(function(dbArticle) {
+        .then(function(dbnews) {
           // View the added result in the console
           console.log(dbnews);
         })
@@ -159,6 +159,24 @@ app.post("/movieNews/:id", function(req, res) {
     });
 });
 
+// DELETE route for deleting posts
+  app.delete("/movieNews/", function(req, res) {
+    db.news.destroy({})
+    .then(function(dbnews) {
+      res.json(dbnews);
+    });
+  });
+
+  // DELETE route for deleting posts
+  app.delete("/movieNews/:id", function(req, res) {
+    db.news.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbnews) {
+      res.json(dbnews);
+    });
+  });
 // app.get("/scrape", function(req, res) {
 
 //     // Making a request for fandango.com's homepage

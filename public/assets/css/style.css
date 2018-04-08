@@ -10,16 +10,26 @@ h1{
 	font-size: 90px;
 }
 
-h3{
-	color: lightblue;
+h2{
+	color: #2bafda;
 	text-align: center;
+	font-weight: bold;
 }
 
 .jumbotron{
 	background-color: lightblue;
 }
 #new-stuff{
-	color: lightblue;
+	color: #353232;
+	font-size: 16px;
+}
+
+p{
+	
+  padding: 5px;
+  margin: 5px;
+  background: lightblue;
+
 }
 
 #new-info{
