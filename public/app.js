@@ -1,5 +1,10 @@
-$("#get-it").on("click", function() {
+$(document).on("click", "#get-it", function() {
 console.log("button works");
+$.ajax({
+  method:"GET",
+  url: "/scrape"
+});
+
 
 });
 // Grab the movieNews as a json
