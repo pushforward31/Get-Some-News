@@ -14,8 +14,8 @@ $.ajax({
         // For each one
         for (var i = 0; i < data.length; i++) {
             // Display the apropos information on the page
-            $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-            $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "</button>");
+            $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>" + "<button class = '.delete-it' data-id='" + this.id + "'>" + "Delete </button>" );       
+           // $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "Delete </button>");
         }
     });
 
@@ -91,29 +91,26 @@ $(document).on("click", "#savenote", function() {
 });
 
 $(document).on("click", "#remove-it", function(){
-
+    console.log("this on works");
    // This function does an API call to delete posts
   //function deletePost(id) {}
     $.ajax({
-      method: "DELETE",
-      url: "/moviesNews/" 
+      method: "delete",
+      url: "/moviesNews" 
       //+ thisid
     })
-    .then(function() {
+    .then(function(data) {
+    console.log("News removed");
+    return (data);
       $("#new-info").empty();
     });
 
 });
 
-$(document).on("click", ".delete-it", function(){
+$(document).on("click", '.delete-it', function(){
+    console.log("it works");
 // DELETE route for deleting posts
   app.delete("moviesNews/:id", function(req, res) {
-    db.news.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbnews) {
-      res.json(dbnews);
-    });
+    
   });
 });

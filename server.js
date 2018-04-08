@@ -161,7 +161,7 @@ app.post("/movieNews/:id", function(req, res) {
 
 // DELETE route for deleting posts
   app.delete("/movieNews/", function(req, res) {
-    db.news.destroy({})
+    db.news.remove({})
     .then(function(dbnews) {
       res.json(dbnews);
     });
@@ -169,7 +169,7 @@ app.post("/movieNews/:id", function(req, res) {
 
   // DELETE route for deleting posts
   app.delete("/movieNews/:id", function(req, res) {
-    db.news.destroy({
+    db.news.remove({
       where: {
         id: req.params.id
       }
