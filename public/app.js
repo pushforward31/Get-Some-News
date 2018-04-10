@@ -1,25 +1,32 @@
+//mainPage();
+
 $(document).on("click", "#get-it", function() {
-console.log("button works");
-$.ajax({
-  method:"GET",
-  url: "/scrape"
-}).then(function(data){
-  console.log(data);
+    console.log("button works");
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    }).then(function(data) {
+        console.log(data);
+
+    });
+    mainPage();
+
 });
 
-
-});
-// Grab the movieNews as a json
+function mainPage() {
+    // Grab the movieNews as a json
     $.getJSON("/movieNews", function(data) {
         // For each one
         var button = $("<button class = 'delete-it'>");
         for (var i = 0; i < data.length; i++) {
             // Display the apropos information on the page
-            $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>" + "<button id = 'delete-it'> Delete </button>"  );       
-           // $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "Delete </button>");
+            $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+            // $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "Delete </button>");
             $("#delete-it").append(data[i]._id);
         }
     });
+
+}
 // $("<button class = '.delete-it'>" + "Delete </button>")
 //data-id='" + this.id + "'
 
@@ -93,34 +100,39 @@ $(document).on("click", "#savenote", function() {
     $("#bodyinput").val("");
 });
 
-$(document).on("click", "#remove-it", function(){
+$(document).on("click", "#remove-it", function() {
     console.log("this on works");
-   // This function does an API call to delete posts
-  //function deletePost(id) {}
+    // This function does an API call to delete posts
+    //function deletePost(id) {}
     $.ajax({
-      method: "DELETE",
-      url: "/movieNews" 
-      //+ thisid
-    })
-    .then(function(data) {
-    console.log("News removed");
-    return (data);
-      $("#new-info").empty();
+        method: "GET",
+        datatype: "json",
+        url: "/movieNews/delete",
+            success: function(response){
+            //+ thisid
+
+            $("#new-info").empty();
+        }
     });
+    //clearPage();
 
 });
 
-$(document).on("click", '#delete-it', function(){
+function clearPage() {
+    $("#new-info").empty();
+}
+
+$(document).on("click", '#delete-it', function() {
     console.log("it works");
-// DELETE route for deleting posts
-  $.ajax({
-      method: "DELETE",
-      url: "/movieNews/:id" 
-      //+ thisid
-    })
-    .then(function(data) {
-    console.log("Single news removed");
-    return (data);
-      //$("#new-info").empty();
-    });
+    // DELETE route for deleting posts
+    $.ajax({
+            method: "GET",
+            url: "/movieNews/id"
+            //+ thisid
+        })
+        .then(function(data) {
+            console.log("Single news removed");
+            return (data);
+            //$("#new-info").empty();
+        });
 });

@@ -106,7 +106,9 @@ app.get("/scrape", function(req, res) {
 
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
+
   });
+  res.render("index");
 });
 
 // Route for getting all movieNews from the db
@@ -159,22 +161,71 @@ app.post("/movieNews/:id", function(req, res) {
     });
 });
 
-// DELETE route for deleting posts
-  app.delete("/movieNews/", function(req, res) {
-    db.news.remove({})
-    .then(function(dbnews) {
-      res.json(dbnews);
-    });
+// Remove every note from the notes collection
+app.get("/movieNews/delete", function(req, res){
+  db.news.find({}).
+  then(function(error, data) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(data);
+      //data.remove();
+     
+      res.destroy(data);
+      return;
+    }
+
+  // }).then(function(dbnews) {
+  //     // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+  //     // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+  //     // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+  //     return db.news.find({});
+  //   });
+
+  //res.render("index");
   });
+});
+
+// //DELETE route for deleting posts
+//   app.get("/movieNews/delete", function(req, res) {
+//   var collection = db.news.find({});
+
+//   // Create a new Article using the `result` object built from scraping
+//       news.remove(collection).exec()
+//         .then(function(dbnews) {
+//           // View the added result in the console
+//           console.log(dbnews);
+//         })
+//         .catch(function(err) {
+//           // If an error occurred, send it to the client
+//           return res.json(err);
+//         });
+
+
+
+
+  //   db.news.remove({})
+  //   .then(function(dbnews) {
+  //     res.json(dbnews);
+  // return db.news.remove({});
+  //   });
+    
+  //});
 
   // DELETE route for deleting posts
-  app.delete("/movieNews/:id", function(req, res) {
-    db.news.remove({
+  app.get("/movieNews/id", function(req, res) {
+    db.news.find({
       where: {
         id: req.params.id
       }
     }).then(function(dbnews) {
-      res.json(dbnews);
+
+      res.destroy(dbnews);
     });
   });
 // app.get("/scrape", function(req, res) {
