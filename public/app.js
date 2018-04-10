@@ -7,10 +7,10 @@ $(document).on("click", "#get-it", function() {
         method: "GET",
         url: "/scrape"
     }).then(function() {
-       // console.log(data);
-       mainPage();
+        // console.log(data);
+        mainPage();
     });
-    
+
 
 });
 
@@ -21,12 +21,20 @@ function mainPage() {
         var button = $("<button class = 'delete-it'>");
         for (var i = 0; i < data.length; i++) {
             // Display the apropos information on the page
-            $("#new-info").append("<p class = 'solo' data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+            $("#new-info").append("<p class = 'solo' data-id='" + data[i]._id + "'>" + data[i].title + "<br/>" + data[i].link + "</p>");
             // $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "Delete </button>");
             //$("#delete-it").append(data[i]._id);
         }
     });
 
+}
+
+function showNotes() {
+    $.getJSON("/movieNews/Note", function(data) {
+        for (var i = 0; i < data.length; i++) {
+            $("#saveNote").append("<p class = 'soloStuff' data-id='" + data[i]._id + "'>" + data[i].title + "<br/>" + data[i].body + "</p>");
+        }
+    });
 }
 // $("<button class = '.delete-it'>" + "Delete </button>")
 //data-id='" + this.id + "'
@@ -35,8 +43,8 @@ function mainScreen() {
     $.ajax({
         method: "GET",
         url: "/movieNews",
-        success: function(data){
-        $("#new-info").html(data);
+        success: function(data) {
+            $("#new-info").html(data);
         }
     });
     // $.getJSON("/movieNews",
@@ -55,6 +63,11 @@ $(document).on("click", "#currentRender", function() {
 
     mainPage();
 
+});
+
+$(document).on("click", "#saveBtn", function() {
+
+    showNotes();
 });
 
 

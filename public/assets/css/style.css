@@ -18,9 +18,9 @@ h2{
   width: 300px;
   position: relative;
     -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 900s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 600s; /* Safari 4.0 - 8.0 */
     animation-name: example;
-    animation-duration: 900s;
+    animation-duration: 600s;
 }
 
 @-webkit-keyframes example {
@@ -50,7 +50,7 @@ h2{
 	float: right;
 }
 
-p{
+p.solo{
 	
   padding: 5px;
   margin: 5px;
@@ -62,7 +62,15 @@ p{
 
 p:hover {
     opacity: 1.0;
-    }
+}
+
+p.soloStuff{
+  padding: 5px;
+  margin: 5px;
+  background-color: #ca7914;
+  opacity: 0.5;
+
+}
 
 #new-info{
 	 display: inline-block;

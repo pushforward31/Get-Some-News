@@ -123,6 +123,18 @@ app.get("/movieNews", function(req, res) {
     });
 });
 
+app.get("/movieNews/Note", function(req, res){
+  //Grab the notes
+  db.Note.find({})
+  .then(function(dbNote){
+    //Send back to the client
+    res.json(dbNote);
+  })
+  .catch(function(err){
+    res.json(err);
+  });
+});
+
 // Route for grabbing a specific news by id, populate it with it's note
 app.get("/movieNews/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
