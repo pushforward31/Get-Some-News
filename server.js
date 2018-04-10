@@ -41,19 +41,15 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/films";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-//     , {
-//   useMongoClient: true
-// });
-// // Database configuration
-// var databaseUrl = "films";
-// var collections = ["movieNews"];
 
 
 
 app.get("/", function(req, res) {
 
     res.render("index");
-  });
+  // }).then(function{
+
+   });
 
 // Retrieve data from the db
 // app.get("/all", function(req, res) {

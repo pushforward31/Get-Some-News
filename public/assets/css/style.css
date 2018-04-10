@@ -14,6 +14,26 @@ h2{
 	color: #2bafda;
 	text-align: center;
 	font-weight: bold;
+  background: black;
+  width: 300px;
+  position: relative;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 900s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 900s;
+}
+
+@-webkit-keyframes example {
+    0%   {background-color:black; left:0px; right:0px;}
+    25%  {background-color:black; left:1150px; right:0px;}
+    75%  {background-color:black; left:0px; right:0px;}
+    100% {background-color:black; left:1150px; right:0px;}
+}
+@keyframes example {
+    0%   {background-color:black; left:0px; right:0px;}
+    25%  {background-color:black; left:1150px; right:0px;}
+    75%  {background-color:black; left:0px; right:0px;}
+    100%  {background-color:black; left:1150px; right:0px;}
 }
 
 .jumbotron{
@@ -34,8 +54,9 @@ p{
 	
   padding: 5px;
   margin: 5px;
-  background: lightblue;
+  background-color: lightblue;
   opacity: 0.5;
+
 
 }
 

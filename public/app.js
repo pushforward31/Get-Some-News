@@ -1,15 +1,16 @@
 //mainPage();
+//mainScreen();
 
 $(document).on("click", "#get-it", function() {
     console.log("button works");
     $.ajax({
         method: "GET",
         url: "/scrape"
-    }).then(function(data) {
-        console.log(data);
-
+    }).then(function() {
+       // console.log(data);
+       mainPage();
     });
-    mainPage();
+    
 
 });
 
@@ -20,20 +21,41 @@ function mainPage() {
         var button = $("<button class = 'delete-it'>");
         for (var i = 0; i < data.length; i++) {
             // Display the apropos information on the page
-            $("#new-info").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+            $("#new-info").append("<p class = 'solo' data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
             // $("#new-info").append("<button class = '.delete-it' data-id='" + data[i]._id + "'>" + "Delete </button>");
-            $("#delete-it").append(data[i]._id);
+            //$("#delete-it").append(data[i]._id);
         }
     });
 
 }
 // $("<button class = '.delete-it'>" + "Delete </button>")
 //data-id='" + this.id + "'
+function mainScreen() {
 
+    $.ajax({
+        method: "GET",
+        url: "/movieNews",
+        success: function(data){
+        $("#new-info").html(data);
+        }
+    });
+    // $.getJSON("/movieNews",
+    //     function(err, data) {
+    //         if (err) {
+    //             console.log(err);
+    //             return(err);
+    //         } else {
 
+    //             return (data);
+    //         }
+    //     });
+}
 
+$(document).on("click", "#currentRender", function() {
 
+    mainPage();
 
+});
 
 
 
@@ -108,7 +130,7 @@ $(document).on("click", "#remove-it", function() {
         method: "GET",
         datatype: "json",
         url: "/movieNews/delete",
-            success: function(response){
+        success: function(response) {
             //+ thisid
 
             $("#new-info").empty();
