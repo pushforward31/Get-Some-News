@@ -31,8 +31,10 @@ function mainPage() {
 
 function showNotes() {
     $.getJSON("/movieNews/Note", function(data) {
+        console.log(data);
         for (var i = 0; i < data.length; i++) {
-            $("#saveNote").append("<p class = 'soloStuff' data-id='" + data[i]._id + "'>" + data[i].title + "<br/>" + data[i].body + "</p>");
+            //$("#saveNote").append("<p class = 'soloStuff' data-id='" + data[i]._id + "'>" + data[i].title + "<br/>" + data[i].body + "</p>");
+            $("#new-info").append("<p class = 'soloStuff' data-id='" + data[i]._id + "'>" + data[i].title + "<br/>" + data[i].body + "</p>");
         }
     });
 }
